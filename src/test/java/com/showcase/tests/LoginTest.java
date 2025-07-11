@@ -1,5 +1,6 @@
 package com.showcase.tests;
 
+import org.openqa.selenium.chrome.ChromeOptions;
 import com.showcase.pages.LoginPage;
 import io.qameta.allure.Description;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +15,12 @@ public class LoginTest {
 
 	@BeforeMethod
 	public void setUp() {
-		driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless=new");
+		options.addArguments("--no-sandbox");
+		options.addArguments("--disable-dev-shm-usage");
+
+		driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
 		driver.get("https://www.saucedemo.com/");
 	}
